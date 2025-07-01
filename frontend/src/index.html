@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div>
+        <div class="icone">
+            <img class="icone" src="./images/icone.png">
+        </div>
+
+        <div class="top">
+            <h1>Hogwarts Points Manager</h1>
+            <span class="Log-out">Log out</span>
+        </div>
+        <hr>
+        
+        <input class="pesquisa-aluno" type="search" placeholder="Pesquisar Aluno">
+            <div class="casas">
+                <div class="casas-hogwarts">
+                    <img class="grifinoria" src="./images/grifinoria.png">
+                </div>
+
+                <div class="casas-hogwarts">
+                    <img class="lufa-lufa" src="./images/lufa-lufa.png">
+                </div>
+
+                <div class="casas-hogwarts">
+                    <img class="corvinal" src="./images/corvinal.png">
+                </div>
+
+                <div class="casas-hogwarts">
+                    <img class="sonserina" src="./images/sonserina.png">
+                </div>
+            </div>
+
+        <button class="btn-adicionar" onclick="chamaPagina()">Adicionar Aluno</button>
+
+        <h2>Histórico de Pontos</h2>
+        <div class="historico-pontos">
+
+            <span>pontos</span>
+        </div>
+    </div>
+
+
+    <script>
+        function chamaPagina(){
+            window.location.href = "cadastroAluno.html";
+    }
+    </script>
+</body>
+</html>

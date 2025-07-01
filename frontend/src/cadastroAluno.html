@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Aluno</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        
+        <div class="top">
+            <h1>Registrar Novo Aluno</h1>
+            <span class="voltar" onclick="voltar()">Voltar</span>
+        </div>
+        <hr>
+
+        <form class="formulario">
+            <label>Nome</label>
+            <input class="form" type="text">
+
+            <label>Sobrenome</label>
+            <input class="form" type="text">
+
+            <label for="casa">Selecione a casa:</label>
+            <select class="seleciona-casa" id="casa" name="casa">
+                <option value="" disabled selected>Selecione</option>
+                <option value="Grifinoria">Grifinória</option>
+                <option value="Sonserina">Sonserina</option>
+                <option value="Corvinal">Corvinal</option> 
+                <option value="Lufa-Lufa">Lufa-Lufa</option>
+            </select>
+
+            <label>Data Nascimento</label>
+            <input class="date" type="date"> 
+
+        </form>
+        <button class="btn-adicionar" type="submit">Adicionar Aluno</button>
+    </div>
+
+    <script>
+        function voltar(){
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
