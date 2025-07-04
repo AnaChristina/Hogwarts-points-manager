@@ -11,7 +11,7 @@
 <body>
     <div>
         <div class="icone">
-            <img class="icone" src="./images/icone.png">
+            <img class="icone" src="../src/image/icone.png">
         </div>
 
         <div class="top">
@@ -23,36 +23,41 @@
         <input class="pesquisa-aluno" type="search" placeholder="Pesquisar Aluno">
             <div class="casas">
                 <div class="casas-hogwarts">
-                    <img class="grifinoria" src="./images/grifinoria.png">
+                    <img class="grifinoria" src="../src/image/grifinoria.png">
                 </div>
 
                 <div class="casas-hogwarts">
-                    <img class="lufa-lufa" src="./images/lufa-lufa.png">
+                    <img class="lufa-lufa" src="../src/image/lufa-lufa.png">
                 </div>
 
                 <div class="casas-hogwarts">
-                    <img class="corvinal" src="./images/corvinal.png">
+                    <img class="corvinal" src="../src/image/corvinal.png">
                 </div>
 
                 <div class="casas-hogwarts">
-                    <img class="sonserina" src="./images/sonserina.png">
+                    <img class="sonserina" src="../src/image/sonserina.png">
                 </div>
             </div>
 
         <button class="btn-adicionar" onclick="chamaPagina()">Adicionar Aluno</button>
 
         <h2>Histórico de Pontos</h2>
-        <div class="historico-pontos">
+        <div id = "alunos" class="historico-pontos">
 
             <span>pontos</span>
         </div>
     </div>
+    <h2>Alunos cadastrados</h2>
+    <ul id="lista-alunos"></ul>
 
 
+    <script type="module" src="./dist/app.js"></script>
     <script>
+
         function chamaPagina(){
             window.location.href = "cadastroAluno.html";
     }
     </script>
+    <script src="../dist/app.js" defer></script>
 </body>
 </html>
