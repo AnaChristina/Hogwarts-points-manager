@@ -16,27 +16,27 @@
         </div>
         <hr>
 
-        <form class="formulario">
+        <form class="formulario" id="formularioAluno">
             <label>Nome</label>
-            <input class="form" type="text">
+            <input class="form" type="text" name="nome" id="nome">
 
             <label>Sobrenome</label>
-            <input class="form" type="text">
+            <input class="form" type="text" name="sobrenome" id="sobrenome">
 
             <label for="casa">Selecione a casa:</label>
             <select class="seleciona-casa" id="casa" name="casa">
                 <option value="" disabled selected>Selecione</option>
-                <option value="Grifinoria">Grifinória</option>
-                <option value="Sonserina">Sonserina</option>
-                <option value="Corvinal">Corvinal</option> 
-                <option value="Lufa-Lufa">Lufa-Lufa</option>
+                <option value="1">Grifinória</option>
+                <option value="2">Sonserina</option>
+                <option value="3">Corvinal</option> 
+                <option value="4">Lufa-Lufa</option>
             </select>
 
             <label>Data Nascimento</label>
-            <input class="date" type="date"> 
+            <input class="date" type="date" name="nascimento" id="nascimento"> 
 
+            <button class="btn-adicionar" type="submit">Adicionar Aluno</button>
         </form>
-        <button class="btn-adicionar" type="submit">Adicionar Aluno</button>
     </div>
 
     <script>
@@ -44,5 +44,49 @@
             window.location.href = "index.html";
         }
     </script>
+
+    <script>
+    document.getElementById('formularioAluno').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const sobrenome = document.getElementById('sobrenome').value;
+    const casa_id = parseInt(document.getElementById('casa').value);
+    const dataNascimento = document.getElementById('nascimento').value;
+    const slug = (nome + '-' + sobrenome).toLowerCase().replace(/\s+/g, '-');
+
+    try {
+        const resposta = await fetch('http://localhost:3000/alunos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({nome, sobrenome, dataNascimento, casa_id, slug })
+        });
+
+        if (resposta.ok) {
+        alert('Aluno cadastrado com sucesso!');
+        window.location.href = 'index.html';
+        } else {
+        alert('Erro ao cadastrar aluno.');
+        }
+    } catch (erro) {
+        console.error('Erro na requisição:', erro);
+        alert('Erro inesperado.');
+    }
+    });
+
+
+
+    //exlcuir aluno
+
+
+    //editar aluno
+
+
+    //pesquisar aluno
+
+</script>
+
 </body>
 </html>

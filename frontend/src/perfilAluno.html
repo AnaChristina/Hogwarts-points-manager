@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfil do Aluno</title>
+    <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
+    <div class="">
+        <span class="voltar" onclick="voltar()">Voltar</span>
+
+        <h1 class="aluno"> Perfil do Aluno</h1>
+        <div class="dados-alunos" id="dados-aluno"></div>
+
+        <button class="btn-pontos" id="btnAdicionar">+ Adicionar pontos</button>
+        <button class="btn-pontos">- Remover pontos</button>
+    </div>
     
+    <script src="../dist/perfil.js" defer></script>
+
+    <script>
+    function voltar(){
+        window.location.href = "index.html";
+    }
+    </script>
+
+
 </body>
 </html>

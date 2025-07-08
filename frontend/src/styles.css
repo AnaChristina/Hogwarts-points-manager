@@ -9,6 +9,7 @@ body{
     margin: 0;
 }
 
+
 .container {
     padding: 40px;
     border-radius: 10px;
@@ -31,6 +32,7 @@ span{
 .pesquisa-aluno{
     font-size: 25px;
     border-radius: 5px;
+    color:#b7ab85;
     border-color: #D4AF37;
     font-family: 'Garamond';
     background-color:#070e0e;
@@ -150,4 +152,67 @@ h1{
     width: 100%;
     max-width: 120px;
     height: auto;
+}
+
+
+.lista-alunos button{
+    font-size: 25px;
+    font-family: 'Garamond';
+    color: #D4AF37;
+    border-radius: 5px;
+    background-color: transparent;
+    border-color: #D4AF37;
+    border-width: 1px;
+    margin-left: 10px;
+}
+
+.lista-alunos{
+    margin-top: 35px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.lista-alunos th,
+.lista-alunos td {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+
+}
+
+.lista-alunos button:hover {
+    box-shadow: 0px 0px 15px rgba(212, 175, 55, 0.3);
+}
+
+
+
+/* perfil do aluno */
+
+.aluno{
+    text-align: center;
+    font-size: 20px;
+    font-weight:lighter;
+
+}
+
+.dados-alunos h1 {
+    text-align: center;
+    font-weight: lighter;
+}
+
+.dados-alunos p{
+    font-weight: lighter;
+}
+
+.dt-nascimento{
+    text-align: center;
+}
+
+.btn-pontos{
+    font-size: 25px;
+    font-family: 'Garamond';
+    color: #D4AF37;
+    border-radius: 5px;
+    background-color: transparent;
+    border-color: #D4AF37;
+    border-width: 1px;
+    margin-top: 15px;
 }

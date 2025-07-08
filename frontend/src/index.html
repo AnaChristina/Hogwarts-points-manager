@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div>
+    <div class="campo">
         <div class="icone">
             <img class="icone" src="../src/image/icone.png">
         </div>
@@ -21,6 +21,21 @@
         <hr>
         
         <input class="pesquisa-aluno" type="search" placeholder="Pesquisar Aluno">
+
+
+            <table class="lista-alunos">
+                <thead>
+                    <tr class="">
+                        <th>Nome</th>
+                        <th>Pontos</th>
+                        <th>Casa</th>
+                    </tr>
+                </thead>
+                <tbody class="lista-alunos" id="lista-alunos">
+                    
+                </tbody>
+            </table>
+
             <div class="casas">
                 <div class="casas-hogwarts">
                     <img class="grifinoria" src="../src/image/grifinoria.png">
@@ -47,9 +62,7 @@
             <span>pontos</span>
         </div>
     </div>
-    <h2>Alunos cadastrados</h2>
-    <ul id="lista-alunos"></ul>
-
+    
 
     <script type="module" src="./dist/app.js"></script>
     <script>
