@@ -22,14 +22,14 @@ export class AlunosController {
             res.status(500).json({ erro: 'Erro ao listar alunos' });
         }
     }
-    
 
 
-//pesquisae alunos
-    async buscaAluno(req: Request, res: Response){
+
+    //pesquisae alunos
+    async buscaAluno(req: Request, res: Response) {
         const nomeBusca = String(req.query.nome || '');
 
-        try{
+        try {
             const alunos = await prisma.aluno.findMany({
                 where: {
                     nome: {
@@ -39,9 +39,9 @@ export class AlunosController {
                 },
             });
             res.status(200).json(alunos);
-        }catch (error){
+        } catch (error) {
             console.error(error);
-            res.status(500).json({erro: 'erro ao buscar aluno'});
+            res.status(500).json({ erro: 'erro ao buscar aluno' });
         }
     }
 
@@ -69,8 +69,7 @@ export class AlunosController {
 
 
     //função para cadastrar aluno novo
-    async cadastrar(req: Request, res: Response) 
-    {
+    async cadastrar(req: Request, res: Response) {
         const { nome, sobrenome, casa_id, dataNascimento, slug } = req.body;
         try {
             const novoAluno = await prisma.aluno.create({
@@ -84,11 +83,11 @@ export class AlunosController {
             });
             res.status(201).json(novoAluno);
         }
-    
+
         catch (error) {
             console.error(error);
             res.status(500).json({ erro: 'Erro cadastrar aluno' });
-            }
+        }
     }
 
 
@@ -102,36 +101,68 @@ export class AlunosController {
         }
 
         try {
-            // Busca o aluno para obter a casa e os pontos atuais
             const aluno = await prisma.aluno.findUnique({
-            where: { id },
-            include: { casa: true },
+                where: { id },
+                include: { casa: true },
             });
 
             if (!aluno) {
-            res.status(404).json({ error: 'Aluno não encontrado' });
-            return;
+                res.status(404).json({ error: 'Aluno não encontrado' });
+                return;
             }
 
-            // Atualiza os pontos do aluno somando os novos pontos
             const alunoAtualizado = await prisma.aluno.update({
-            where: { id },
-            data: { pontos: (aluno.pontos || 0) + pontos },
+                where: { id },
+                data: { pontos: (aluno.pontos || 0) + pontos },
             });
 
-            // Atualiza os pontos da casa do aluno somando os pontos
             if (aluno.casa_id) {
-            await prisma.casa.update({
-                where: { id: aluno.casa_id },
-                data: { pontos: { increment: pontos } }, // incrementa os pontos
-            });
+                await prisma.casa.update({
+                    where: { id: aluno.casa_id },
+                    data: { pontos: { increment: pontos } },
+                });
             }
 
             res.status(200).json({ mensagem: `Adicionados ${pontos} pontos ao aluno ${aluno.nome} e sua casa.` });
-        } 
+        }
         catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Erro ao adicionar pontos' });
+        }
+    }
+
+
+
+    async removerPontos(req: Request, res: Response) {
+        const { id } = req.params;
+        const { pontos } = req.body;
+
+        if (!pontos || isNaN(pontos)) {
+            return res.status(400).json({ mensagem: 'Pontos inválidos.' });
+        }
+
+        try {
+            const aluno = await prisma.aluno.findUnique({
+                where: { id },
+                include: { casa: true },
+            });
+
+            if (!aluno) {
+                return res.status(404).json({ mensagem: 'Aluno não encontrado.' });
+            }
+
+            const novosPontos = (aluno.pontos ?? 0) - pontos;
+
+            await prisma.aluno.update({
+                where: {id},
+                data: { pontos: novosPontos < 0 ? 0 : novosPontos },
+            });
+
+            return res.json({ mensagem: 'Pontos removidos com sucesso!' });
+        }
+        catch (error) {
+            console.error(error);
+            return res.status(500).json({ mensagem: 'Erro ao remover pontos.' });
         }
     }
 }

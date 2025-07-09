@@ -34,32 +34,65 @@ window.addEventListener('DOMContentLoaded', () => {
         const pontos='';
         const idAluno = new URLSearchParams(window.location.search).get('id');
 
-        // Adicionar pontos
-  document.querySelector('#btnAdicionar')?.addEventListener('click', () => {
-    console.log('Botão clicado!');
-    const pontos = parseInt(prompt('Quantos pontos adicionar?') || '0', 10);
+    // Adicionar pontos
+    const btnAdicionar = document.getElementById('btnAdicionar');
+    const input = document.getElementById('inputPontos') as HTMLInputElement | null;
 
-    if (isNaN(pontos) || pontos <= 0) {
-      alert('Por favor, insira um número válido de pontos.');
-      return;
+    if (btnAdicionar && input) {
+        btnAdicionar.addEventListener('click', () => {
+            const pontos = parseInt(input.value, 10);
+
+            if (isNaN(pontos)) {
+                alert('Digite um número válido.');
+                return;
+            }
+
+            fetch(`http://localhost:3000/alunos/${alunoId}/adicionar-pontos`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pontos }),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.mensagem || 'Pontos adicionados com sucesso!');
+                    location.reload(); // atualiza a página para mostrar os novos pontos
+                })
+                .catch(err => {
+                    console.error('Erro ao adicionar pontos:', err);
+                    alert('Erro ao adicionar pontos.');
+                });
+        });
     }
 
-    console.log(`Tentando adicionar ${pontos} pontos para o aluno ${alunoId}`);
 
-    fetch(`http://localhost:3000/alunos/${alunoId}/adicionar-pontos`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pontos }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        alert(data.mensagem);
-        location.reload();
-      })
-      .catch(err => {
-        console.error('Erro na requisição:', err);
-        alert('Erro ao adicionar pontos.');
-      });
-  });
 
+    //remover pontos
+    const btnRemover = document.getElementById('btnRemover');
+
+    if (btnRemover && input) 
+      {
+        btnRemover.addEventListener('click', () => {
+            const pontos = parseInt(input.value, 10);
+
+            if (isNaN(pontos)) {
+                alert('Digite um número válido.');
+                return;
+            }
+
+            fetch(`http://localhost:3000/alunos/${alunoId}/remover-pontos`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pontos }),
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.mensagem || 'Pontos removidos com sucesso!');
+                location.reload();
+            })
+            .catch(err => {
+                console.error('Erro ao remover pontos:', err);
+                alert('Erro ao remover pontos.');
+            });
+        });
+      }
 });
