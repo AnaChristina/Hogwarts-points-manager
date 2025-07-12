@@ -8,9 +8,11 @@ const prisma = new PrismaClient()
 //importando as routas 
 import alunoRouter from './routes/aluno.routes';
 import casaRouter from './routes/casa.routes';
+import authRoutes from "./routes/auth.routes";
 
 
 const app = express();
+
 
 //conf
 
@@ -18,8 +20,11 @@ app.use(cors()); //todos acessam
 app.use(express.json()); 
 
 //rotas
+
 app.use('/alunos', alunoRouter);
 app.use('/casas', casaRouter);
+app.use('/auth', authRoutes)
+
 
 
 

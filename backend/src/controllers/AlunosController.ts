@@ -132,7 +132,7 @@ export class AlunosController {
     }
 
 
-
+//remover pontos alunos e da casa também
     async removerPontos(req: Request, res: Response) {
         const { id } = req.params;
         const { pontos } = req.body;

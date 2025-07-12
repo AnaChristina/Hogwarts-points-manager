@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 .then(res => res.json())
                 .then(data => {
                     alert(data.mensagem || 'Pontos adicionados com sucesso!');
-                    location.reload(); // atualiza a página para mostrar os novos pontos
+                    location.reload(); // atualiza a página para mostrar os novos pontos 
                 })
                 .catch(err => {
                     console.error('Erro ao adicionar pontos:', err);
@@ -66,11 +66,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    //remover pontos
+    //remover pontos dos alunos
     const btnRemover = document.getElementById('btnRemover');
 
     if (btnRemover && input) 
-      {
+    {
         btnRemover.addEventListener('click', () => {
             const pontos = parseInt(input.value, 10);
 
@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ pontos }),
-            })
+                })
             .then(res => res.json())
             .then(data => {
                 alert(data.mensagem || 'Pontos removidos com sucesso!');
@@ -94,5 +94,5 @@ window.addEventListener('DOMContentLoaded', () => {
                 alert('Erro ao remover pontos.');
             });
         });
-      }
+    }
 });

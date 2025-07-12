@@ -16,10 +16,10 @@ window.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Erro ao buscar alunos:', error);
         });
-        
+
 
     function mostrarAlunos(alunosFiltrados: any[]) {
-        tabela!.innerHTML = ''; 
+        tabela!.innerHTML = '';
         alunosFiltrados.forEach((aluno: any) => {
             const tr = document.createElement('tr');
 
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const btnPerfil = document.createElement('button');
             btnPerfil.textContent = 'Perfil'
             btnPerfil.addEventListener('click', () => {
-            window.location.href = `perfilAluno.html?id=${aluno.id}`;
+                window.location.href = `perfilAluno.html?id=${aluno.id}`;
             })
 
             tr.appendChild(tdNome);
@@ -55,6 +55,21 @@ window.addEventListener('DOMContentLoaded', () => {
         mostrarAlunos(filtrados);
     });
 
-    
+
+    const imagensCasas = document.querySelectorAll('.casa-img');
+
+    imagensCasas.forEach(img => {
+        img.addEventListener('click', () => {
+            const idCasa = img.getAttribute('data-id');
+            // if (idCasa) {
+            //     window.location.href = `perfilCasa.html?id=${idCasa}`;
+            // }
+
+            if (idCasa) {
+            console.log('Clicou na casa ID:', idCasa); // <-- TESTE
+            window.location.href = `perfilCasa.html?id=${idCasa}`;
+        }
+        });
+    });
 });
 

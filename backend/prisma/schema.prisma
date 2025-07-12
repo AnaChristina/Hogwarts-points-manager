@@ -31,3 +31,11 @@ model Aluno{
 }
 
 
+model Usuario {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  senha String
+  nome     String
+  createdAt DateTime @default(now())
+}
+
