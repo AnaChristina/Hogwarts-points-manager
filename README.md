@@ -13,10 +13,7 @@ Sistema web para gerenciamento de alunos, casas e pontuação em Hogwarts. Permi
 ## Passos para rodar o projeto
 
 ### 1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/hogwarts-points-manager.git
-cd hogwarts-points-manager/backend
-```
+
 
 ### 2. Instale as dependências
 ```bash
@@ -44,6 +41,11 @@ npx prisma db seed
 ### 6. Inicie o servidor backend
 ```bash
 npm run dev
+```
+
+### para melhor visualização dos dados inicie prisma studio
+```bash
+ npx prisma studio
 ```
 
 ### 7. Abra o frontend
